@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.itsk.datamaster.dao.UserApiDao">
+	<!-- 登入 -->
+	<select id="login"  resultType="org.itsk.datamaster.entity.UserInfo">
+		SELECT * FROM userinfo where
+		phone=#{phone} and password=#{password} limit 1
+	</select>
+	<!-- 注册用户. -->
+	<insert id="register" parameterType="org.itsk.datamaster.entity.UserInfo"
+		useGeneratedKeys="true" keyProperty="ID">
+
+		INSERT INTO userinfo (id,phone,password,nickname,thumb)
+		VALUES(#{user.id},#{user.phone}, #{user.password}, #{user.nickname},#{user.thumb});
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+	</insert>
+	<update id="updateUserInfo"  parameterType="org.itsk.datamaster.entity.UserInfo">
+		update userinfo SET nickname=#{user.nickname},thumb=#{user.thumb} where phone=#{user.phone} and password=#{user.password}
+	</update>
+	<!-- 更新用户密码 -->
+	<update id="updateUserPassword">
+		update userinfo SET password=#{newPassword} where phone=#{phone} and password=#{oldPassword}
+	</update>
+	<!-- 根据用户名获取用户数量 -->
+	<select id="getUserCountByUserName"  resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM userinfo where
+		phone=#{phone}
+	</select>
+	<!-- 获取所有的用户数 -->
+	<select id="getUsers"  resultType="org.itsk.datamaster.entity.UserInfo">
+		SELECT * FROM userinfo
+	</select>
+	<!-- 找回密码 -->
+	<update id="findPwd">
+		update userinfo SET password=#{password} where phone=#{phone}
+	</update>
+	<!-- 设置数字密码 -->
+	<update id="setNumberPwd">
+		update userinfo SET numberpwd=#{numberpwd} where phone=#{phone} and password=#{password}
+	</update>
+	<!-- 设置图片密码 -->
+	<update id="setPhotoPwd">
+		update userinfo SET photopwd=#{photopwd} where phone=#{phone} and password=#{password}
+	</update>
+</mapper>
