@@ -54,22 +54,6 @@ public class UserApi {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="setPhotopwd")
-	public String setPhotoPwd(@RequestParam(value = "phone", required = true)String phone,
-			@RequestParam(value = "password", required = true)String password,
-			@RequestParam(value = "photopwd", required = true)String photopwd){
-		return service.setPhotoPwd(phone, password, photopwd);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="setNumberpwd")
-	public String setNumberPwd(@RequestParam(value = "phone", required = true)String phone,
-			@RequestParam(value = "password", required = true)String password,
-			@RequestParam(value = "numberpwd", required = true)String numberpwd){
-		return service.setNumberPwd(phone, password, numberpwd);
-	}
-	
-	@ResponseBody
 	@RequestMapping(value="checkPhoneExist")
 	public String checkPhoneExist(@RequestParam(value = "phone", required = true)String phone){
 		return service.checkPhoneExist(phone);

@@ -38,20 +38,7 @@ public interface UserApiService {
 	 * @param smsCode 验证码
 	 * */
 	public String findPwd(String phone, String password, String smsCode);
-	/**
-	 * 设置图形密码
-	 * @param phone 手机号
-	 * @param password 密码
-	 * @param photopwd 图形密码
-	 * */
-	public String setPhotoPwd(String phone, String password, String photopwd);
-	/**
-	 * 设置数字密码
-	 * @param phone 手机号
-	 * @param password 密码
-	 * @param numberpwd 数字密码
-	 * */
-	public String setNumberPwd(String phone, String password, String numberpwd);
+
 	/**
 	 * 检查用户是否存在
 	 * @param phone 手机号

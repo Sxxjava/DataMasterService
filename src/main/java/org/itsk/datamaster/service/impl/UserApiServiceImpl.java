@@ -200,55 +200,6 @@ public class UserApiServiceImpl implements UserApiService {
 	}
 
 	@Override
-	public String setPhotoPwd(String phone, String password, String photopwd) {
-		//检查账号是否存在
-		GeneralResponse<UserInfo> response=new GeneralResponse<UserInfo>();
-		if (!checkUserExist(phone)) {
-			//更新失败,用户不存在
-			response.setSuccess(false);
-			response.setMsg("设置失败,手机号不存在!");
-			response.setData(null);
-			return response.toString();
-		}
-		int flag=-1;
-		flag=userApiDao.setPhotoPwd(phone, password,photopwd);
-		if (flag>0) {
-			response.setMsg("设置成功!");
-			response.setData(null);
-			response.setSuccess(true);
-		}else{
-			response.setMsg("设置失败!");
-			response.setData(null);
-			response.setSuccess(false);
-		}
-		return response.toString();
-	}
-
-	@Override
-	public String setNumberPwd(String phone, String password, String numberpwd) {
-		//检查账号是否存在
-		GeneralResponse<UserInfo> response=new GeneralResponse<UserInfo>();
-		if (!checkUserExist(phone)) {
-			//更新失败,用户不存在
-			response.setSuccess(false);
-			response.setMsg("设置失败,手机号不存在!");
-			response.setData(null);
-			return response.toString();
-		}
-		int flag=-1;
-		flag=userApiDao.setNumberPwd(phone, password,numberpwd);
-		if (flag>0) {
-			response.setMsg("设置成功!");
-			response.setData(null);
-			response.setSuccess(true);
-		}else{
-			response.setMsg("设置失败!");
-			response.setData(null);
-			response.setSuccess(false);
-		}
-		return response.toString();
-	}
-	@Override
 	public boolean checkUserExist(String phone){
 		int flag=userApiDao.getUserCountByUserName(phone);
 		if (flag<1) {
